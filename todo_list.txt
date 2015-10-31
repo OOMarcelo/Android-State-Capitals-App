@@ -1,15 +1,56 @@
 Next:
--pick a random state out of the fifty
--generate the correct answer and three wrong, random ones
--respond to the user's choice:
-    --if he answers correctly:
-        --update the score
-        --remove that question's state from the pot of state data
-            --wrong answers still choose from all fifty states
-        --ask about another state
-    --if he answers wrong:
-        --zero the score
-        --restart the pot of state data
-        --ask about another state
--high score
--victory
+-experiment with tests:
+    --implement a unit test (to confirm)
+    --consider other tests (e.g. UI test)
+    --cite the book that helped me do this in readme
+-implement game logic first (before making the game look appealing)
+(see Game Play section below)
+-get image of each state
+-high score (see final chapter of that book)
+    --cite the book that helped me do this in readme
+
+Game Play:
+-begin by restarting game; GameActivity.restart()
+    --clear and fill up GameActivity.mStateCapitalMap
+        --GameActivity.mStateCapitalMap = getNewStateCapitalMap();
+    --restart the score (UI-wise and through GameActivity.mScore)
+    --make GameActivity.correctState and GameActivity.correctCapital both null
+    --GameActivity.presentNextState()
+-GameActivity.presentNextState()
+    --GameActivity.setFourAnswers()
+    --set GameActivity.mWaitingForAnswer to true
+-GameActivity.setFourAnswers()
+    --get a state-capital pair in GameActivity.mStateCapitalMap
+        --note to GameActivity that this is the answer
+            --e.g. GameActivity.correctState and GameActivity.correctCapital
+    --get a general state-capital map, delete the recently selected
+        state-capital pair, and randomly pick three answers from this
+    --update UI (randomize for the buttons)
+        --update the four buttons
+        --update the question
+-GameActivity.onClick()
+    --if GameActivity.mWaitingForAnswer == true:
+        --set GameActivity.mWaitingForAnswer to false
+        --if (isCorrectCapital(textOfTheButton)):
+            --respondToCorrectAnswer()
+        --else:
+            --respondToWrongAnswer()
+    --else:
+        --do nothing
+-GameActivity.isCorrectCapital(givenCapital):
+    --return givenCapital == this.correctCapital
+-GameActivity.respondToCorrectAnswer():
+    --update GameActivity.mScore and UI score element
+    --update GameActivity.mStateCapitalMap
+    --if (GameActivity.mScore < 50):
+        --GameActivity.presentNextState()
+    --else
+        --GameActivity.respondToVictory()
+-GameActivity.respondToWrongAnswer():
+    --GameActivity.restart()
+-GameActivity.respondToVictory():
+    --go to VictoryActivity
+-VictoryActivity:
+    --tell the player that he/she has won
+    --have a restart button that returns to GameActivity and thus
+    restarts the game
