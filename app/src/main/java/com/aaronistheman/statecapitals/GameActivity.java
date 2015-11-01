@@ -19,17 +19,12 @@ public class GameActivity extends Activity implements
     Button choice4;
     TextView stateName;
 
-    // The first String is the state;
-    // the second String is the capital of the state
-    Map<String, String> stateCapitalMap;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
         setUpButtons();
-        setUpStateCapitalMap();
     }
 
     private void setUpButtons() {
@@ -46,12 +41,15 @@ public class GameActivity extends Activity implements
     }
 
     /*
-        @post stateCapitalMap has been filled with the fifty pairs of
-        U.S. states and their capitals
-        @throws AssertionError if data for fifty states wasn't stored
-    */
-    private void setUpStateCapitalMap() {
-        stateCapitalMap = new HashMap<String, String>();
+        @hasTest yes
+        @returns a HashMap instance that maps each of the fifty
+        states to its respective capital
+     */
+    public static HashMap<String, String> getNewStateCapitalMap() {
+        HashMap<String, String> stateCapitalMap =
+                new HashMap<String, String>();
+
+        // Fill up the HashMap instance
         stateCapitalMap.put("Alabama", "Montgomery");
         stateCapitalMap.put("Alaska", "Juneau");
         stateCapitalMap.put("Arizona", "Phoenix");
@@ -102,8 +100,8 @@ public class GameActivity extends Activity implements
         stateCapitalMap.put("West Virginia", "Charleston");
         stateCapitalMap.put("Wisconsin", "Madison");
         stateCapitalMap.put("Wyoming", "Cheyenne");
-        if (stateCapitalMap.size() != 50)
-            throw new AssertionError("Data for all fifty states wasn't stored");
+
+        return stateCapitalMap;
     }
 
     @Override

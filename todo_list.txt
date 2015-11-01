@@ -1,8 +1,10 @@
 Next:
 -experiment with tests:
-    --implement a unit test (to confirm)
+    --decide how to make functions that can be easily unit tested
+    (e.g. should such functions be static?)
     --consider other tests (e.g. UI test)
     --cite the book that helped me do this in readme
+-consider making the states and capitals into enumerators
 -implement game logic first (before making the game look appealing)
 (see Game Play section below)
 -get image of each state
