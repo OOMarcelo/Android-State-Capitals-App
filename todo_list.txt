@@ -7,8 +7,6 @@ Next:
 
 Game Play:
 -begin by restarting game; GameActivity.restart()
-    --clear and fill up GameActivity.mStateCapitalMap
-        --GameActivity.mStateCapitalMap = getNewStateCapitalMap();
     --restart the score (UI-wise and through GameActivity.mScore)
     --make GameActivity.currentState and GameActivity.correctCapital both null
     --GameActivity.presentNextState()

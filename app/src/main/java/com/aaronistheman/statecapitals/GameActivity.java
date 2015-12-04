@@ -12,26 +12,34 @@ import java.util.HashMap;
 public class GameActivity extends Activity implements
         View.OnClickListener {
 
-    Button choice1;
-    Button choice2;
-    Button choice3;
-    Button choice4;
-    TextView stateName;
+    // UI components
+    private Button mChoice1, mChoice2, mChoice3, mChoice4;
+    private TextView mStateName;
+
+    // Game data
+    private HashMap<String, String> mStateCapitalMap = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
+        // Set up UI
         setUpButtons();
     }
 
     private void setUpButtons() {
-        choice1 = (Button) findViewById(R.id.buttonChoice1);
-        choice2 = (Button) findViewById(R.id.buttonChoice2);
-        choice3 = (Button) findViewById(R.id.buttonChoice3);
-        choice4 = (Button) findViewById(R.id.buttonChoice4);
-        stateName = (TextView) findViewById(R.id.stateName);
+        mChoice1 = (Button) findViewById(R.id.bChoice1);
+        mChoice2 = (Button) findViewById(R.id.bChoice2);
+        mChoice3 = (Button) findViewById(R.id.bChoice3);
+        mChoice4 = (Button) findViewById(R.id.bChoice4);
+        mStateName = (TextView) findViewById(R.id.tvStateName);
+
+        mChoice1.setOnClickListener(this);
+        mChoice2.setOnClickListener(this);
+        mChoice3.setOnClickListener(this);
+        mChoice4.setOnClickListener(this);
+    }
 
         choice1.setOnClickListener(this);
         choice2.setOnClickListener(this);
