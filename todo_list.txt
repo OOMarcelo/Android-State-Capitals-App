@@ -1,5 +1,4 @@
 Next:
--consider making the states and capitals into enumerators
 -implement game logic first (before making the game look appealing)
 (see Game Play section below)
 -get image of each state
@@ -11,7 +10,7 @@ Game Play:
     --clear and fill up GameActivity.mStateCapitalMap
         --GameActivity.mStateCapitalMap = getNewStateCapitalMap();
     --restart the score (UI-wise and through GameActivity.mScore)
-    --make GameActivity.correctState and GameActivity.correctCapital both null
+    --make GameActivity.currentState and GameActivity.correctCapital both null
     --GameActivity.presentNextState()
 -GameActivity.presentNextState()
     --GameActivity.setFourAnswers()
@@ -52,3 +51,6 @@ Game Play:
     --tell the player that he/she has won
     --have a restart button that returns to GameActivity and thus
     restarts the game
+
+Considerable:
+-making the states and capitals into enumerators
