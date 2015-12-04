@@ -1,8 +1,5 @@
 Next:
--experiment with tests:
-    --implement a unit test (to confirm)
-    --consider other tests (e.g. UI test)
-    --cite the book that helped me do this in readme
+-consider making the states and capitals into enumerators
 -implement game logic first (before making the game look appealing)
 (see Game Play section below)
 -get image of each state
@@ -29,6 +26,7 @@ Game Play:
         --update the four buttons
         --update the question
 -GameActivity.onClick()
+    --consider using UI test
     --if GameActivity.mWaitingForAnswer == true:
         --set GameActivity.mWaitingForAnswer to false
         --if (isCorrectCapital(textOfTheButton)):
