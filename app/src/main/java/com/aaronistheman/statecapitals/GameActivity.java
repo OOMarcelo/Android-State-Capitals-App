@@ -8,7 +8,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.HashMap;
-import java.util.Map;
 
 public class GameActivity extends Activity implements
         View.OnClickListener {
@@ -40,10 +39,9 @@ public class GameActivity extends Activity implements
         choice4.setOnClickListener(this);
     }
 
-    /*
-        @hasTest yes
-        @returns a HashMap instance that maps each of the fifty
-        states to its respective capital
+    /**
+     * @return a HashMap instance that maps each of the fifty
+     * states to its respective capital
      */
     public static HashMap<String, String> getNewStateCapitalMap() {
         HashMap<String, String> stateCapitalMap =
