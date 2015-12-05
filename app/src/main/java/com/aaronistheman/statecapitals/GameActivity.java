@@ -7,36 +7,77 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
 import java.util.HashMap;
 
 public class GameActivity extends Activity implements
         View.OnClickListener {
 
-    Button choice1;
-    Button choice2;
-    Button choice3;
-    Button choice4;
-    TextView stateName;
+    // Constants
+    public static final int numberOfStates = 50;
+
+    // UI components
+    private Button mChoice1, mChoice2, mChoice3, mChoice4;
+    private TextView mStateName, mScore;
+
+    // Game data
+    private HashMap<String, String> mStateCapitalMap = null;
+    String mCurrentState = null;
+    String mCorrectCapital = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
-        setUpButtons();
+        // Set up UI
+        setUpComponents();
+
+        // Set up game
+        restartGame();
     }
 
-    private void setUpButtons() {
-        choice1 = (Button) findViewById(R.id.buttonChoice1);
-        choice2 = (Button) findViewById(R.id.buttonChoice2);
-        choice3 = (Button) findViewById(R.id.buttonChoice3);
-        choice4 = (Button) findViewById(R.id.buttonChoice4);
-        stateName = (TextView) findViewById(R.id.stateName);
+    /**
+     * @post components have been assigned to appropriate member variables;
+     * appropriate buttons have had their listeners turned on
+     */
+    private void setUpComponents() {
+        mChoice1 = (Button) findViewById(R.id.bChoice1);
+        mChoice2 = (Button) findViewById(R.id.bChoice2);
+        mChoice3 = (Button) findViewById(R.id.bChoice3);
+        mChoice4 = (Button) findViewById(R.id.bChoice4);
+        mStateName = (TextView) findViewById(R.id.tvStateName);
+        mScore = (TextView) findViewById(R.id.tvScoreData);
 
-        choice1.setOnClickListener(this);
-        choice2.setOnClickListener(this);
-        choice3.setOnClickListener(this);
-        choice4.setOnClickListener(this);
+        mChoice1.setOnClickListener(this);
+        mChoice2.setOnClickListener(this);
+        mChoice3.setOnClickListener(this);
+        mChoice4.setOnClickListener(this);
+    }
+
+    /**
+     * @post relevant game data has been adjusted so that game can
+     * appropriately restart; function has been called to present first state
+     */
+    private void restartGame() {
+        mStateCapitalMap = getNewStateCapitalMap();
+        mCurrentState = null;
+        mCorrectCapital = null;
+        setScore(0);
+    }
+
+    /**
+     * @param value the new score
+     * @pre 0 <= value <= GameActivity.numberOfStates
+     * @post score shown in UI has been set to the given value
+     */
+    public void setScore(int value) {
+        if (value < 0 || value > numberOfStates)
+            throw new IllegalArgumentException
+                    ("value isn't in correct range");
+
+        mScore.setText(Integer.toString(value));
     }
 
     /**
@@ -102,6 +143,10 @@ public class GameActivity extends Activity implements
         return stateCapitalMap;
     }
 
+    /**
+     * @param v
+     * @post the click has been properly resolved
+     */
     @Override
     public void onClick(View v) {
         // Tell the user that a button was pressed
