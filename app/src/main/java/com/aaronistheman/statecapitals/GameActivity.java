@@ -24,7 +24,6 @@ public class GameActivity extends Activity implements
 
     // Game data
     private HashMap<String, String> mStateCapitalMap = null;
-    String mCurrentState = null;
     String mCorrectCapital = null;
 
     public int getStateCapitalMapSize() {
@@ -78,9 +77,10 @@ public class GameActivity extends Activity implements
      */
     private void restartGame() {
         mStateCapitalMap = getNewStateCapitalMap();
-        mCurrentState = null;
         mCorrectCapital = null;
         setScore(0);
+
+        presentNextState();
     }
 
     /**
@@ -164,22 +164,33 @@ public class GameActivity extends Activity implements
      * to the user; user can select answer
      */
     private void presentNextState() {
-        updateStateCapitalPair();
+        updateShownState(updateStateCapitalPair());
     }
 
     /**
      * @pre mStateCapitalMap.size() > 0
      * @post a state-capital pair has been randomly chosen (and removed) from
      * mStateCapitalMap; game has been notified of the removed pair's data
+     * @returns the name of the selected state
      */
-    public void updateStateCapitalPair() {
+    public String updateStateCapitalPair() {
         // Randomly select a state
         List<String> keys = new ArrayList<String>(mStateCapitalMap.keySet());
         Random random = new Random();
-        mCurrentState = keys.get(random.nextInt(keys.size()));
+        String state = keys.get(random.nextInt(keys.size()));
 
         // Get that state's capital, removing the state-capital pair from
         // mStateCapitalMap in the process
-        mCorrectCapital = mStateCapitalMap.remove(mCurrentState);
+        mCorrectCapital = mStateCapitalMap.remove(state);
+
+        return state;
+    }
+
+    /**
+     * @param stateName name of the state to show
+     * @post the state shown in the UI has been updated
+     */
+    public void updateShownState(String stateName) {
+        mStateName.setText(stateName);
     }
 }

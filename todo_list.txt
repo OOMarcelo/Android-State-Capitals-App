@@ -9,8 +9,6 @@ Game Play:
 -begin by restarting game; GameActivity.restart()
     --GameActivity.presentNextState()
 -GameActivity.presentNextState()
-    --GameActivity.updateQuestion()
-        --adjust state shown in the UI
     --GameActivity.updateFourAnswers()
     --set GameActivity.mWaitingForAnswer to true
 -GameActivity.updateFourAnswers()
