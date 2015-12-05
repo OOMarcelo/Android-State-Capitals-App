@@ -7,9 +7,10 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
-
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Random;
 
 public class GameActivity extends Activity implements
         View.OnClickListener {
@@ -26,6 +27,10 @@ public class GameActivity extends Activity implements
     String mCurrentState = null;
     String mCorrectCapital = null;
 
+    public int getStateCapitalMapSize() {
+        return mStateCapitalMap.size();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +41,17 @@ public class GameActivity extends Activity implements
 
         // Set up game
         restartGame();
+    }
+
+    /**
+     * @param v
+     * @post the click has been properly resolved
+     */
+    @Override
+    public void onClick(View v) {
+        // Tell the user that a button was pressed
+        Toast.makeText(getApplicationContext(), "A button was pressed",
+                Toast.LENGTH_LONG).show();
     }
 
     /**
@@ -144,13 +160,26 @@ public class GameActivity extends Activity implements
     }
 
     /**
-     * @param v
-     * @post the click has been properly resolved
+     * @post the next state and four possible capitals have been presented
+     * to the user; user can select answer
      */
-    @Override
-    public void onClick(View v) {
-        // Tell the user that a button was pressed
-        Toast.makeText(getApplicationContext(), "A button was pressed",
-                Toast.LENGTH_LONG).show();
+    private void presentNextState() {
+        updateStateCapitalPair();
+    }
+
+    /**
+     * @pre mStateCapitalMap.size() > 0
+     * @post a state-capital pair has been randomly chosen (and removed) from
+     * mStateCapitalMap; game has been notified of the removed pair's data
+     */
+    public void updateStateCapitalPair() {
+        // Randomly select a state
+        List<String> keys = new ArrayList<String>(mStateCapitalMap.keySet());
+        Random random = new Random();
+        mCurrentState = keys.get(random.nextInt(keys.size()));
+
+        // Get that state's capital, removing the state-capital pair from
+        // mStateCapitalMap in the process
+        mCorrectCapital = mStateCapitalMap.remove(mCurrentState);
     }
 }

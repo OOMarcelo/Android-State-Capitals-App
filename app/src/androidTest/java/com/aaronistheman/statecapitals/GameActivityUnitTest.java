@@ -89,6 +89,14 @@ public class GameActivityUnitTest
         assertEquals("Montpelier", stateCapitalMap.get("Vermont"));
     }
 
+    public void testUpdateStateCapitalPair() {
+        // Test that a state-capital pair is removed from the map
+        int formerSize = mActivity.getStateCapitalMapSize();
+        mActivity.updateStateCapitalPair();
+        assertEquals("A state-capital pair wasn't removed",
+                formerSize - 1, mActivity.getStateCapitalMapSize());
+    }
+
     public void testUI() {
         assertNotNull("Third choice button not found", mChoice3);
         ViewAsserts.assertLeftAligned(mChoice1, mChoice2);
