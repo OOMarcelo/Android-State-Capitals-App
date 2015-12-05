@@ -7,7 +7,6 @@ Next:
 
 Game Play:
 -begin by restarting game; GameActivity.restart()
-    --make GameActivity.currentState and GameActivity.correctCapital both null
     --GameActivity.presentNextState()
 -GameActivity.presentNextState()
     --GameActivity.setFourAnswers()
@@ -41,6 +40,7 @@ Game Play:
     --else
         --GameActivity.respondToVictory()
 -GameActivity.respondToWrongAnswer():
+    --tell the user that the game will restart
     --GameActivity.restart()
 -GameActivity.respondToVictory():
     --go to VictoryActivity

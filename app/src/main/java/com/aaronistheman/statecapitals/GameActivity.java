@@ -23,6 +23,8 @@ public class GameActivity extends Activity implements
 
     // Game data
     private HashMap<String, String> mStateCapitalMap = null;
+    String mCurrentState = null;
+    String mCorrectCapital = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +62,8 @@ public class GameActivity extends Activity implements
      */
     private void restartGame() {
         mStateCapitalMap = getNewStateCapitalMap();
+        mCurrentState = null;
+        mCorrectCapital = null;
         setScore(0);
     }
 
