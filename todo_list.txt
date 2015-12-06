@@ -6,23 +6,14 @@ Next:
     --cite the book that helped me do this in readme
 
 Game Play:
--GameActivity.presentNextState()
-    --set GameActivity.mWaitingForAnswer to true
 -GameActivity.onClick()
-    --consider using UI test
     --if GameActivity.mWaitingForAnswer == true:
-        --set GameActivity.mWaitingForAnswer to false
         --if (isCorrectCapital(textOfTheButton)):
             --respondToCorrectAnswer()
         --else:
             --respondToWrongAnswer()
-    --else:
-        --do nothing
--GameActivity.isCorrectCapital(givenCapital):
-    --return givenCapital == this.correctCapital
 -GameActivity.respondToCorrectAnswer():
-    --update GameActivity.mScore and UI score element
-    --update GameActivity.mStateCapitalMap
+    --update UI score element
     --if (GameActivity.mScore < 50):
         --GameActivity.presentNextState()
     --else
