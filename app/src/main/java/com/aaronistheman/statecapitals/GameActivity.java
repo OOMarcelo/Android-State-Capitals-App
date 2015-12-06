@@ -25,6 +25,7 @@ public class GameActivity extends Activity implements
     // Game data
     private HashMap<String, String> mStateCapitalMap = null;
     String mCorrectCapital = null;
+    private boolean mWaitingForAnswer = false;
 
     public int getStateCapitalMapSize() {
         return mStateCapitalMap.size();
@@ -43,14 +44,26 @@ public class GameActivity extends Activity implements
     }
 
     /**
-     * @param v
-     * @post the click has been properly resolved
+     * @param v the component that was clicked
+     * @pre an instance of Button was clicked
+     * @post if game is waiting for answer and user pressed a button,
+     * game calls appropriate method to react to user's answer
      */
     @Override
     public void onClick(View v) {
-        // Tell the user that a button was pressed
-        Toast.makeText(getApplicationContext(), "A button was pressed",
-                Toast.LENGTH_LONG).show();
+        if (mWaitingForAnswer) {
+            mWaitingForAnswer = false;
+
+            // Call the appropriate method, based on whether or not the
+            // user was correct
+            Button button = (Button) v;
+            if (button.getText() == mCorrectCapital)
+                Toast.makeText(getApplicationContext(), "Correct!",
+                        Toast.LENGTH_LONG).show();
+            else
+                Toast.makeText(getApplicationContext(), "Wrong!",
+                        Toast.LENGTH_LONG).show();
+        }
     }
 
     /**
@@ -80,6 +93,7 @@ public class GameActivity extends Activity implements
     private void restartGame() {
         mStateCapitalMap = getNewStateCapitalMap();
         mCorrectCapital = null;
+        mWaitingForAnswer = false;
         setScore(0);
 
         presentNextState();
@@ -168,6 +182,7 @@ public class GameActivity extends Activity implements
     private void presentNextState() {
         updateShownState(updateStateCapitalPair());
         updateFourAnswers();
+        mWaitingForAnswer = true;
     }
 
     /**
