@@ -6,20 +6,8 @@ Next:
     --cite the book that helped me do this in readme
 
 Game Play:
--begin by restarting game; GameActivity.restart()
-    --GameActivity.presentNextState()
 -GameActivity.presentNextState()
-    --GameActivity.setFourAnswers()
     --set GameActivity.mWaitingForAnswer to true
--GameActivity.setFourAnswers()
-    --get a state-capital pair in GameActivity.mStateCapitalMap
-        --note to GameActivity that this is the answer
-            --e.g. GameActivity.correctState and GameActivity.correctCapital
-    --get a general state-capital map, delete the recently selected
-        state-capital pair, and randomly pick three answers from this
-    --update UI (randomize for the buttons)
-        --update the four buttons
-        --update the question
 -GameActivity.onClick()
     --consider using UI test
     --if GameActivity.mWaitingForAnswer == true:

@@ -7,9 +7,10 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
-
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Random;
 
 public class GameActivity extends Activity implements
         View.OnClickListener {
@@ -18,13 +19,16 @@ public class GameActivity extends Activity implements
     public static final int numberOfStates = 50;
 
     // UI components
-    private Button mChoice1, mChoice2, mChoice3, mChoice4;
+    private Button mAnswerButtons[] = new Button[4];
     private TextView mStateName, mScore;
 
     // Game data
     private HashMap<String, String> mStateCapitalMap = null;
-    String mCurrentState = null;
     String mCorrectCapital = null;
+
+    public int getStateCapitalMapSize() {
+        return mStateCapitalMap.size();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,21 +43,34 @@ public class GameActivity extends Activity implements
     }
 
     /**
+     * @param v
+     * @post the click has been properly resolved
+     */
+    @Override
+    public void onClick(View v) {
+        // Tell the user that a button was pressed
+        Toast.makeText(getApplicationContext(), "A button was pressed",
+                Toast.LENGTH_LONG).show();
+    }
+
+    /**
+     * @pre mAnswerButtons.length = 4
      * @post components have been assigned to appropriate member variables;
      * appropriate buttons have had their listeners turned on
      */
     private void setUpComponents() {
-        mChoice1 = (Button) findViewById(R.id.bChoice1);
-        mChoice2 = (Button) findViewById(R.id.bChoice2);
-        mChoice3 = (Button) findViewById(R.id.bChoice3);
-        mChoice4 = (Button) findViewById(R.id.bChoice4);
+        // Set up the answer buttons
+        mAnswerButtons[0] = (Button) findViewById(R.id.bChoice1);
+        mAnswerButtons[0].setOnClickListener(this);
+        mAnswerButtons[1] = (Button) findViewById(R.id.bChoice2);
+        mAnswerButtons[1].setOnClickListener(this);
+        mAnswerButtons[2] = (Button) findViewById(R.id.bChoice3);
+        mAnswerButtons[2].setOnClickListener(this);
+        mAnswerButtons[3] = (Button) findViewById(R.id.bChoice4);
+        mAnswerButtons[3].setOnClickListener(this);
+
         mStateName = (TextView) findViewById(R.id.tvStateName);
         mScore = (TextView) findViewById(R.id.tvScoreData);
-
-        mChoice1.setOnClickListener(this);
-        mChoice2.setOnClickListener(this);
-        mChoice3.setOnClickListener(this);
-        mChoice4.setOnClickListener(this);
     }
 
     /**
@@ -62,9 +79,10 @@ public class GameActivity extends Activity implements
      */
     private void restartGame() {
         mStateCapitalMap = getNewStateCapitalMap();
-        mCurrentState = null;
         mCorrectCapital = null;
         setScore(0);
+
+        presentNextState();
     }
 
     /**
@@ -144,13 +162,75 @@ public class GameActivity extends Activity implements
     }
 
     /**
-     * @param v
-     * @post the click has been properly resolved
+     * @post the next state and four possible capitals have been presented
+     * to the user; user can select answer
      */
-    @Override
-    public void onClick(View v) {
-        // Tell the user that a button was pressed
-        Toast.makeText(getApplicationContext(), "A button was pressed",
-                Toast.LENGTH_LONG).show();
+    private void presentNextState() {
+        updateShownState(updateStateCapitalPair());
+        updateFourAnswers();
+    }
+
+    /**
+     * @pre mStateCapitalMap.size() > 0
+     * @post a state-capital pair has been randomly chosen (and removed) from
+     * mStateCapitalMap; game has been notified of the removed pair's data
+     * @returns the name of the selected state
+     */
+    public String updateStateCapitalPair() {
+        // Randomly select a state
+        String state = getRandomKey(mStateCapitalMap);
+
+        // Get that state's capital, removing the state-capital pair from
+        // mStateCapitalMap in the process
+        mCorrectCapital = mStateCapitalMap.remove(state);
+
+        return state;
+    }
+
+    /**
+     * @param map the map to get a random key from; not changed
+     * @return the randomly selected key
+     */
+    public static String getRandomKey(HashMap<String, String> map) {
+        List<String> keys = new ArrayList<String>(map.keySet());
+        Random random = new Random();
+        return keys.get(random.nextInt(keys.size()));
+    }
+
+    /**
+     * @param stateName name of the state to show
+     * @post the state shown in the UI has been updated
+     */
+    public void updateShownState(String stateName) {
+        mStateName.setText(stateName);
+    }
+
+    /**
+     * @post three wrong answers have been randomly selected;
+     * all four UI buttons have been set to an answer
+     */
+    public void updateFourAnswers() {
+        // Decide which button should have the correct answer
+        Random random = new Random();
+        int correctAnswerIndex = random.nextInt(mAnswerButtons.length);
+
+        // For choosing wrong answers; remove correct answer from it
+        HashMap<String, String> wrongAnswersMap = getNewStateCapitalMap();
+        wrongAnswersMap.remove(mStateName.getText());
+
+        // Update UI buttons, assigning a wrong state capital to three of them
+        for (int i = 0; i < mAnswerButtons.length; ++i) {
+            Button button = mAnswerButtons[i];
+
+            // If this button should have correct answer, make it so
+            if (i == correctAnswerIndex)
+                button.setText(mCorrectCapital);
+
+            // Otherwise, randomly choose a wrong answer for this button
+            else {
+                button.setText(wrongAnswersMap.remove
+                        (getRandomKey(wrongAnswersMap)));
+            }
+        }
     }
 }
