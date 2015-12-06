@@ -1,6 +1,7 @@
 Next:
 -implement game logic first (before making the game look appealing)
 (see Game Play section below)
+-fix the fitting of longer capital names (e.g. Oklahoma City) into button
 -get image of each state
 -high score (see final chapter of that book)
     --cite the book that helped me do this in readme
@@ -30,3 +31,7 @@ Game Play:
 
 Considerable:
 -making the states and capitals into enumerators
+-putting a tiny time break in between correct answer and presentation
+of next state
+-making it more obvious that the correct answer has been given
+    --could play sound effect

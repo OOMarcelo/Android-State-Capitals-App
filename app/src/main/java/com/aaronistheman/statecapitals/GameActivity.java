@@ -58,12 +58,26 @@ public class GameActivity extends Activity implements
             // user was correct
             Button button = (Button) v;
             if (button.getText() == mCorrectCapital)
-                Toast.makeText(getApplicationContext(), "Correct!",
-                        Toast.LENGTH_LONG).show();
+                respondToCorrectAnswer();
             else
                 Toast.makeText(getApplicationContext(), "Wrong!",
                         Toast.LENGTH_LONG).show();
+            // respondToWrongAnswer();
         }
+    }
+
+    /**
+     * @post score has been updated; appropriate method has been called
+     * to continue game
+     */
+    public void respondToCorrectAnswer() {
+        int newScore = Integer.parseInt("" + mScore.getText()) + 1;
+        setScore(newScore);
+
+        if (newScore < 50)
+            presentNextState();
+        else
+            ; // respondToVictory();
     }
 
     /**
@@ -189,7 +203,7 @@ public class GameActivity extends Activity implements
      * @pre mStateCapitalMap.size() > 0
      * @post a state-capital pair has been randomly chosen (and removed) from
      * mStateCapitalMap; game has been notified of the removed pair's data
-     * @returns the name of the selected state
+     * @return the name of the selected state
      */
     public String updateStateCapitalPair() {
         // Randomly select a state

@@ -77,6 +77,18 @@ public class GameActivityUnitTest
                 threwException);
     }
 
+    /**
+     * @pre GameActivity.setScore() works
+     */
+    public void testRespondToCorrectAnswer() {
+        // Simply test that the score is incremented
+        int originalScore = 13;
+        mActivity.setScore(originalScore);
+        mActivity.respondToCorrectAnswer();
+        assertEquals(
+                originalScore + 1, Integer.parseInt("" + mScore.getText()));
+    }
+
     public void testGetNewStateCapitalMap() {
         HashMap<String, String> stateCapitalMap =
             GameActivity.getNewStateCapitalMap();
