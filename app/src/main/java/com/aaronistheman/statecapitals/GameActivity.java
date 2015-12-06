@@ -19,7 +19,7 @@ public class GameActivity extends Activity implements
     public static final int numberOfStates = 50;
 
     // UI components
-    private Button mChoice1, mChoice2, mChoice3, mChoice4;
+    private Button mAnswerButtons[] = new Button[4];
     private TextView mStateName, mScore;
 
     // Game data
@@ -54,21 +54,23 @@ public class GameActivity extends Activity implements
     }
 
     /**
+     * @pre mAnswerButtons.length = 4
      * @post components have been assigned to appropriate member variables;
      * appropriate buttons have had their listeners turned on
      */
     private void setUpComponents() {
-        mChoice1 = (Button) findViewById(R.id.bChoice1);
-        mChoice2 = (Button) findViewById(R.id.bChoice2);
-        mChoice3 = (Button) findViewById(R.id.bChoice3);
-        mChoice4 = (Button) findViewById(R.id.bChoice4);
+        // Set up the answer buttons
+        mAnswerButtons[0] = (Button) findViewById(R.id.bChoice1);
+        mAnswerButtons[0].setOnClickListener(this);
+        mAnswerButtons[1] = (Button) findViewById(R.id.bChoice2);
+        mAnswerButtons[1].setOnClickListener(this);
+        mAnswerButtons[2] = (Button) findViewById(R.id.bChoice3);
+        mAnswerButtons[2].setOnClickListener(this);
+        mAnswerButtons[3] = (Button) findViewById(R.id.bChoice4);
+        mAnswerButtons[3].setOnClickListener(this);
+
         mStateName = (TextView) findViewById(R.id.tvStateName);
         mScore = (TextView) findViewById(R.id.tvScoreData);
-
-        mChoice1.setOnClickListener(this);
-        mChoice2.setOnClickListener(this);
-        mChoice3.setOnClickListener(this);
-        mChoice4.setOnClickListener(this);
     }
 
     /**
@@ -165,6 +167,7 @@ public class GameActivity extends Activity implements
      */
     private void presentNextState() {
         updateShownState(updateStateCapitalPair());
+        updateFourAnswers();
     }
 
     /**
@@ -200,5 +203,34 @@ public class GameActivity extends Activity implements
      */
     public void updateShownState(String stateName) {
         mStateName.setText(stateName);
+    }
+
+    /**
+     * @post three wrong answers have been randomly selected;
+     * all four UI buttons have been set to an answer
+     */
+    public void updateFourAnswers() {
+        // Decide which button should have the correct answer
+        Random random = new Random();
+        int correctAnswerIndex = random.nextInt(mAnswerButtons.length);
+
+        // For choosing wrong answers; remove correct answer from it
+        HashMap<String, String> wrongAnswersMap = getNewStateCapitalMap();
+        wrongAnswersMap.remove(mStateName.getText());
+
+        // Update UI buttons, assigning a wrong state capital to three of them
+        for (int i = 0; i < mAnswerButtons.length; ++i) {
+            Button button = mAnswerButtons[i];
+
+            // If this button should have correct answer, make it so
+            if (i == correctAnswerIndex)
+                button.setText(mCorrectCapital);
+
+            // Otherwise, randomly choose a wrong answer for this button
+            else {
+                button.setText(wrongAnswersMap.remove
+                        (getRandomKey(wrongAnswersMap)));
+            }
+        }
     }
 }

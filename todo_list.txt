@@ -7,13 +7,7 @@ Next:
 
 Game Play:
 -GameActivity.presentNextState()
-    --GameActivity.updateFourAnswers()
     --set GameActivity.mWaitingForAnswer to true
--GameActivity.updateFourAnswers()
-    --get a general state-capital map, delete the recently selected
-        state-capital pair, and randomly pick three answers from this
-    --update UI (randomize for the buttons)
-        --update the four buttons
 -GameActivity.onClick()
     --consider using UI test
     --if GameActivity.mWaitingForAnswer == true:
