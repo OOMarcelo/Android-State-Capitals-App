@@ -175,15 +175,23 @@ public class GameActivity extends Activity implements
      */
     public String updateStateCapitalPair() {
         // Randomly select a state
-        List<String> keys = new ArrayList<String>(mStateCapitalMap.keySet());
-        Random random = new Random();
-        String state = keys.get(random.nextInt(keys.size()));
+        String state = getRandomKey(mStateCapitalMap);
 
         // Get that state's capital, removing the state-capital pair from
         // mStateCapitalMap in the process
         mCorrectCapital = mStateCapitalMap.remove(state);
 
         return state;
+    }
+
+    /**
+     * @param map the map to get a random key from; not changed
+     * @return the randomly selected key
+     */
+    public static String getRandomKey(HashMap<String, String> map) {
+        List<String> keys = new ArrayList<String>(map.keySet());
+        Random random = new Random();
+        return keys.get(random.nextInt(keys.size()));
     }
 
     /**
