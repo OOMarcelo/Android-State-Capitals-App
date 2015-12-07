@@ -1,6 +1,7 @@
 package com.aaronistheman.statecapitals;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -77,7 +78,7 @@ public class GameActivity extends Activity implements
         if (newScore < 50)
             presentNextState();
         else
-            ; // respondToVictory();
+            respondToVictory();
     }
 
     /**
@@ -98,6 +99,16 @@ public class GameActivity extends Activity implements
 
         mStateName = (TextView) findViewById(R.id.tvStateName);
         mScore = (TextView) findViewById(R.id.tvScoreData);
+    }
+
+    /**
+     * @post VictoryActivity has been launched
+     */
+    public void respondToVictory() {
+        Intent i;
+        i = new Intent(this, VictoryActivity.class);
+        startActivity(i);
+        finish();
     }
 
     /**

@@ -115,4 +115,11 @@ public class GameActivityUnitTest
         ViewAsserts.assertLeftAligned(mChoice1, mChoice3);
         ViewAsserts.assertLeftAligned(mChoice1, mChoice4);
     }
+
+    public void testVictoryActivityLaunch() {
+        mActivity.respondToVictory();
+
+        Intent triggeredIntent = getStartedActivityIntent();
+        assertNotNull("Intent was null", triggeredIntent);
+    }
 }

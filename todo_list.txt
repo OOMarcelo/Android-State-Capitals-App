@@ -7,27 +7,16 @@ Next:
     --cite the book that helped me do this in readme
 
 Game Play:
--GameActivity.onClick()
-    --if GameActivity.mWaitingForAnswer == true:
-        --if (isCorrectCapital(textOfTheButton)):
-            --respondToCorrectAnswer()
-        --else:
-            --respondToWrongAnswer()
--GameActivity.respondToCorrectAnswer():
-    --update UI score element
-    --if (GameActivity.mScore < 50):
-        --GameActivity.presentNextState()
-    --else
-        --GameActivity.respondToVictory()
--GameActivity.respondToWrongAnswer():
-    --tell the user that the game will restart
-    --GameActivity.restart()
 -GameActivity.respondToVictory():
-    --go to VictoryActivity
+    SIMPLY CHANGE THE SCORE INCREMENT FOR CORRECT ANSWER TO
+    TEST THIS WITHOUT UNIT TEST
 -VictoryActivity:
     --tell the player that he/she has won
     --have a restart button that returns to GameActivity and thus
     restarts the game
+-GameActivity.respondToWrongAnswer():
+    --tell the user that the game will restart
+    --GameActivity.restart()
 
 Considerable:
 -making the states and capitals into enumerators
