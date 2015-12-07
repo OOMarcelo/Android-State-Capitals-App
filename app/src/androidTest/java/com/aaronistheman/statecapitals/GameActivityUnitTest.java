@@ -77,6 +77,18 @@ public class GameActivityUnitTest
                 threwException);
     }
 
+    /**
+     * @pre GameActivity.setScore() works
+     */
+    public void testRespondToCorrectAnswer() {
+        // Simply test that the score is incremented
+        int originalScore = 13;
+        mActivity.setScore(originalScore);
+        mActivity.respondToCorrectAnswer();
+        assertEquals(
+                originalScore + 1, Integer.parseInt("" + mScore.getText()));
+    }
+
     public void testGetNewStateCapitalMap() {
         HashMap<String, String> stateCapitalMap =
             GameActivity.getNewStateCapitalMap();
@@ -102,5 +114,12 @@ public class GameActivityUnitTest
         ViewAsserts.assertLeftAligned(mChoice1, mChoice2);
         ViewAsserts.assertLeftAligned(mChoice1, mChoice3);
         ViewAsserts.assertLeftAligned(mChoice1, mChoice4);
+    }
+
+    public void testVictoryActivityLaunch() {
+        mActivity.respondToVictory();
+
+        Intent triggeredIntent = getStartedActivityIntent();
+        assertNotNull("Intent was null", triggeredIntent);
     }
 }

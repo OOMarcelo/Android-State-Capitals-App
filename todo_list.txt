@@ -1,32 +1,20 @@
 Next:
 -implement game logic first (before making the game look appealing)
 (see Game Play section below)
+-fix the fitting of longer capital names (e.g. Oklahoma City) into button
 -get image of each state
 -high score (see final chapter of that book)
     --cite the book that helped me do this in readme
 
 Game Play:
--GameActivity.onClick()
-    --if GameActivity.mWaitingForAnswer == true:
-        --if (isCorrectCapital(textOfTheButton)):
-            --respondToCorrectAnswer()
-        --else:
-            --respondToWrongAnswer()
--GameActivity.respondToCorrectAnswer():
-    --update UI score element
-    --if (GameActivity.mScore < 50):
-        --GameActivity.presentNextState()
-    --else
-        --GameActivity.respondToVictory()
 -GameActivity.respondToWrongAnswer():
     --tell the user that the game will restart
     --GameActivity.restart()
--GameActivity.respondToVictory():
-    --go to VictoryActivity
--VictoryActivity:
-    --tell the player that he/she has won
-    --have a restart button that returns to GameActivity and thus
-    restarts the game
 
 Considerable:
 -making the states and capitals into enumerators
+-putting a tiny time break in between correct answer and presentation
+of next state
+-making it more obvious that the correct answer has been given
+    --could play sound effect
+    --could figure out how to make the phone vibrate
