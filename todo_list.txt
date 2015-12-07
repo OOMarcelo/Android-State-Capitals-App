@@ -1,15 +1,8 @@
 Next:
--implement game logic first (before making the game look appealing)
-(see Game Play section below)
 -fix the fitting of longer capital names (e.g. Oklahoma City) into button
 -get image of each state
 -high score (see final chapter of that book)
     --cite the book that helped me do this in readme
-
-Game Play:
--GameActivity.respondToWrongAnswer():
-    --tell the user that the game will restart
-    --GameActivity.restart()
 
 Considerable:
 -making the states and capitals into enumerators
