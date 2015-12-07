@@ -4,7 +4,6 @@ Next:
     --cite the book that helped me do this in readme
 
 Considerable:
--making the states and capitals into enumerators
 -putting a tiny time break in between correct answer and presentation
 of next state
 -making it more obvious that the correct answer has been given

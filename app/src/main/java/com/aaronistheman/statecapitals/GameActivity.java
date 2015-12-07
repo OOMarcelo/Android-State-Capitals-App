@@ -17,7 +17,7 @@ public class GameActivity extends Activity implements
         View.OnClickListener {
 
     // Constants
-    public static final int numberOfStates = 50;
+    public static final int NUMBER_OF_STATES = 50;
 
     // UI components
     private Button mAnswerButtons[] = new Button[4];
@@ -134,11 +134,11 @@ public class GameActivity extends Activity implements
 
     /**
      * @param value the new score
-     * @pre 0 <= value <= GameActivity.numberOfStates
+     * @pre 0 <= value <= GameActivity.NUMBER_OF_STATES
      * @post score shown in UI has been set to the given value
      */
     public void setScore(int value) {
-        if (value < 0 || value > numberOfStates)
+        if (value < 0 || value > NUMBER_OF_STATES)
             throw new IllegalArgumentException
                     ("value isn't in correct range");
 
@@ -154,56 +154,56 @@ public class GameActivity extends Activity implements
                 new HashMap<String, String>();
 
         // Fill up the HashMap instance
-        stateCapitalMap.put("Alabama", "Montgomery");
-        stateCapitalMap.put("Alaska", "Juneau");
-        stateCapitalMap.put("Arizona", "Phoenix");
-        stateCapitalMap.put("Arkansas", "Little Rock");
-        stateCapitalMap.put("California", "Sacramento");
-        stateCapitalMap.put("Colorado", "Denver");
-        stateCapitalMap.put("Connecticut", "Hartford");
-        stateCapitalMap.put("Delaware", "Dover");
-        stateCapitalMap.put("Florida", "Tallahassee");
-        stateCapitalMap.put("Georgia", "Atlanta");
-        stateCapitalMap.put("Hawaii", "Honolulu");
-        stateCapitalMap.put("Idaho", "Boise");
-        stateCapitalMap.put("Illinois", "Springfield");
-        stateCapitalMap.put("Indiana", "Indianapolis");
-        stateCapitalMap.put("Iowa", "Des Moines");
-        stateCapitalMap.put("Kansas", "Topeka");
-        stateCapitalMap.put("Kentucky", "Frankfort");
-        stateCapitalMap.put("Louisiana", "Baton Rouge");
-        stateCapitalMap.put("Maine", "Augusta");
-        stateCapitalMap.put("Maryland", "Annapolis");
-        stateCapitalMap.put("Massachusetts", "Boston");
-        stateCapitalMap.put("Michigan", "Lansing");
-        stateCapitalMap.put("Minnesota", "St. Paul");
-        stateCapitalMap.put("Mississippi", "Jackson");
-        stateCapitalMap.put("Missouri", "Jefferson City");
-        stateCapitalMap.put("Montana", "Helena");
-        stateCapitalMap.put("Nebraska", "Lincoln");
-        stateCapitalMap.put("Nevada", "Carson City");
-        stateCapitalMap.put("New Hampshire", "Concord");
-        stateCapitalMap.put("New Jersey", "Trenton");
-        stateCapitalMap.put("New Mexico", "Santa Fe");
-        stateCapitalMap.put("New York", "Albany");
-        stateCapitalMap.put("North Carolina", "Raleigh");
-        stateCapitalMap.put("North Dakota", "Bismarck");
-        stateCapitalMap.put("Ohio", "Columbus");
-        stateCapitalMap.put("Oklahoma", "Oklahoma City");
-        stateCapitalMap.put("Oregon", "Salem");
-        stateCapitalMap.put("Pennsylvania", "Harrisburg");
-        stateCapitalMap.put("Rhode Island", "Providence");
-        stateCapitalMap.put("South Carolina", "Columbia");
-        stateCapitalMap.put("South Dakota", "Pierre");
-        stateCapitalMap.put("Tennessee", "Nashville");
-        stateCapitalMap.put("Texas", "Austin");
-        stateCapitalMap.put("Utah", "Salt Lake City");
-        stateCapitalMap.put("Vermont", "Montpelier");
-        stateCapitalMap.put("Virginia", "Richmond");
-        stateCapitalMap.put("Washington", "Olympia");
-        stateCapitalMap.put("West Virginia", "Charleston");
-        stateCapitalMap.put("Wisconsin", "Madison");
-        stateCapitalMap.put("Wyoming", "Cheyenne");
+        stateCapitalMap.put(States.ALABAMA, "Montgomery");
+        stateCapitalMap.put(States.ALASKA, "Juneau");
+        stateCapitalMap.put(States.ARIZONA, "Phoenix");
+        stateCapitalMap.put(States.ARKANSAS, "Little Rock");
+        stateCapitalMap.put(States.CALIFORNIA, "Sacramento");
+        stateCapitalMap.put(States.COLORADO, "Denver");
+        stateCapitalMap.put(States.CONNECTICUT, "Hartford");
+        stateCapitalMap.put(States.DELAWARE, "Dover");
+        stateCapitalMap.put(States.FLORIDA, "Tallahassee");
+        stateCapitalMap.put(States.GEORGIA, "Atlanta");
+        stateCapitalMap.put(States.HAWAII, "Honolulu");
+        stateCapitalMap.put(States.IDAHO, "Boise");
+        stateCapitalMap.put(States.ILLINOIS, "Springfield");
+        stateCapitalMap.put(States.INDIANA, "Indianapolis");
+        stateCapitalMap.put(States.IOWA, "Des Moines");
+        stateCapitalMap.put(States.KANSAS, "Topeka");
+        stateCapitalMap.put(States.KENTUCKY, "Frankfort");
+        stateCapitalMap.put(States.LOUISIANA, "Baton Rouge");
+        stateCapitalMap.put(States.MAINE, "Augusta");
+        stateCapitalMap.put(States.MARYLAND, "Annapolis");
+        stateCapitalMap.put(States.MASSACHUSETTS, "Boston");
+        stateCapitalMap.put(States.MICHIGAN, "Lansing");
+        stateCapitalMap.put(States.MINNESOTA, "St. Paul");
+        stateCapitalMap.put(States.MISSISSIPPI, "Jackson");
+        stateCapitalMap.put(States.MISSOURI, "Jefferson City");
+        stateCapitalMap.put(States.MONTANA, "Helena");
+        stateCapitalMap.put(States.NEBRASKA, "Lincoln");
+        stateCapitalMap.put(States.NEVADA, "Carson City");
+        stateCapitalMap.put(States.NEW_HAMPSHIRE, "Concord");
+        stateCapitalMap.put(States.NEW_JERSEY, "Trenton");
+        stateCapitalMap.put(States.NEW_MEXICO, "Santa Fe");
+        stateCapitalMap.put(States.NEW_YORK, "Albany");
+        stateCapitalMap.put(States.NORTH_CAROLINA, "Raleigh");
+        stateCapitalMap.put(States.NORTH_DAKAOTA, "Bismarck");
+        stateCapitalMap.put(States.OHIO, "Columbus");
+        stateCapitalMap.put(States.OKLAHOMA, "Oklahoma City");
+        stateCapitalMap.put(States.OREGON, "Salem");
+        stateCapitalMap.put(States.PENNSYLVANIA, "Harrisburg");
+        stateCapitalMap.put(States.RHODE_ISLAND, "Providence");
+        stateCapitalMap.put(States.SOUTH_CAROLINA, "Columbia");
+        stateCapitalMap.put(States.SOUTH_DAKOTA, "Pierre");
+        stateCapitalMap.put(States.TENNESSEE, "Nashville");
+        stateCapitalMap.put(States.TEXAS, "Austin");
+        stateCapitalMap.put(States.UTAH, "Salt Lake City");
+        stateCapitalMap.put(States.VERMONT, "Montpelier");
+        stateCapitalMap.put(States.VIRGINIA, "Richmond");
+        stateCapitalMap.put(States.WASHINGTON, "Olympia");
+        stateCapitalMap.put(States.WEST_VIRGINIA, "Charleston");
+        stateCapitalMap.put(States.WISCONSIN, "Madison");
+        stateCapitalMap.put(States.WYOMING, "Cheyenne");
 
         return stateCapitalMap;
     }
