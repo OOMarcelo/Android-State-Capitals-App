@@ -24,7 +24,8 @@
         </activity>
         <activity
             android:name=".VictoryActivity"
-            android:label="@string/title_activity_victory" >
+            android:label="@string/title_activity_victory"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
         </activity>
     </application>
 

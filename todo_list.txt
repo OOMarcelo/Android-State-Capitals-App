@@ -24,3 +24,4 @@ Considerable:
 of next state
 -making it more obvious that the correct answer has been given
     --could play sound effect
+    --could figure out how to make the phone vibrate
