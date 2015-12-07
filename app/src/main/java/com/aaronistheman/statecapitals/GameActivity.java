@@ -61,9 +61,7 @@ public class GameActivity extends Activity implements
             if (button.getText() == mCorrectCapital)
                 respondToCorrectAnswer();
             else
-                Toast.makeText(getApplicationContext(), "Wrong!",
-                        Toast.LENGTH_LONG).show();
-            // respondToWrongAnswer();
+                respondToWrongAnswer();
         }
     }
 
@@ -79,6 +77,16 @@ public class GameActivity extends Activity implements
             presentNextState();
         else
             respondToVictory();
+    }
+
+    /**
+     * @post user has been informed of what happened; game has been restarted
+     */
+    public void respondToWrongAnswer() {
+        Toast.makeText(getApplicationContext(),
+                "Wrong! The game has restarted.",
+                Toast.LENGTH_SHORT).show();
+        restartGame();
     }
 
     /**
