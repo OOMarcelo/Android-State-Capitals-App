@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,11 +18,12 @@ public class GameActivity extends Activity implements
         View.OnClickListener {
 
     // Constants
-    public static final int numberOfStates = 50;
+    public static final int NUMBER_OF_STATES = 50;
 
     // UI components
     private Button mAnswerButtons[] = new Button[4];
     private TextView mStateName, mScore;
+    private ImageView mStateImage;
 
     // Game data
     private HashMap<String, String> mStateCapitalMap = null;
@@ -106,6 +108,7 @@ public class GameActivity extends Activity implements
         mAnswerButtons[3].setOnClickListener(this);
 
         mStateName = (TextView) findViewById(R.id.tvStateName);
+        mStateImage = (ImageView) findViewById(R.id.ivStateImage);
         mScore = (TextView) findViewById(R.id.tvScoreData);
     }
 
@@ -134,11 +137,11 @@ public class GameActivity extends Activity implements
 
     /**
      * @param value the new score
-     * @pre 0 <= value <= GameActivity.numberOfStates
+     * @pre 0 <= value <= GameActivity.NUMBER_OF_STATES
      * @post score shown in UI has been set to the given value
      */
     public void setScore(int value) {
-        if (value < 0 || value > numberOfStates)
+        if (value < 0 || value > NUMBER_OF_STATES)
             throw new IllegalArgumentException
                     ("value isn't in correct range");
 
@@ -154,58 +157,167 @@ public class GameActivity extends Activity implements
                 new HashMap<String, String>();
 
         // Fill up the HashMap instance
-        stateCapitalMap.put("Alabama", "Montgomery");
-        stateCapitalMap.put("Alaska", "Juneau");
-        stateCapitalMap.put("Arizona", "Phoenix");
-        stateCapitalMap.put("Arkansas", "Little Rock");
-        stateCapitalMap.put("California", "Sacramento");
-        stateCapitalMap.put("Colorado", "Denver");
-        stateCapitalMap.put("Connecticut", "Hartford");
-        stateCapitalMap.put("Delaware", "Dover");
-        stateCapitalMap.put("Florida", "Tallahassee");
-        stateCapitalMap.put("Georgia", "Atlanta");
-        stateCapitalMap.put("Hawaii", "Honolulu");
-        stateCapitalMap.put("Idaho", "Boise");
-        stateCapitalMap.put("Illinois", "Springfield");
-        stateCapitalMap.put("Indiana", "Indianapolis");
-        stateCapitalMap.put("Iowa", "Des Moines");
-        stateCapitalMap.put("Kansas", "Topeka");
-        stateCapitalMap.put("Kentucky", "Frankfort");
-        stateCapitalMap.put("Louisiana", "Baton Rouge");
-        stateCapitalMap.put("Maine", "Augusta");
-        stateCapitalMap.put("Maryland", "Annapolis");
-        stateCapitalMap.put("Massachusetts", "Boston");
-        stateCapitalMap.put("Michigan", "Lansing");
-        stateCapitalMap.put("Minnesota", "St. Paul");
-        stateCapitalMap.put("Mississippi", "Jackson");
-        stateCapitalMap.put("Missouri", "Jefferson City");
-        stateCapitalMap.put("Montana", "Helena");
-        stateCapitalMap.put("Nebraska", "Lincoln");
-        stateCapitalMap.put("Nevada", "Carson City");
-        stateCapitalMap.put("New Hampshire", "Concord");
-        stateCapitalMap.put("New Jersey", "Trenton");
-        stateCapitalMap.put("New Mexico", "Santa Fe");
-        stateCapitalMap.put("New York", "Albany");
-        stateCapitalMap.put("North Carolina", "Raleigh");
-        stateCapitalMap.put("North Dakota", "Bismarck");
-        stateCapitalMap.put("Ohio", "Columbus");
-        stateCapitalMap.put("Oklahoma", "Oklahoma City");
-        stateCapitalMap.put("Oregon", "Salem");
-        stateCapitalMap.put("Pennsylvania", "Harrisburg");
-        stateCapitalMap.put("Rhode Island", "Providence");
-        stateCapitalMap.put("South Carolina", "Columbia");
-        stateCapitalMap.put("South Dakota", "Pierre");
-        stateCapitalMap.put("Tennessee", "Nashville");
-        stateCapitalMap.put("Texas", "Austin");
-        stateCapitalMap.put("Utah", "Salt Lake City");
-        stateCapitalMap.put("Vermont", "Montpelier");
-        stateCapitalMap.put("Virginia", "Richmond");
-        stateCapitalMap.put("Washington", "Olympia");
-        stateCapitalMap.put("West Virginia", "Charleston");
-        stateCapitalMap.put("Wisconsin", "Madison");
-        stateCapitalMap.put("Wyoming", "Cheyenne");
+        stateCapitalMap.put(States.ALABAMA, "Montgomery");
+        stateCapitalMap.put(States.ALASKA, "Juneau");
+        stateCapitalMap.put(States.ARIZONA, "Phoenix");
+        stateCapitalMap.put(States.ARKANSAS, "Little Rock");
+        stateCapitalMap.put(States.CALIFORNIA, "Sacramento");
+        stateCapitalMap.put(States.COLORADO, "Denver");
+        stateCapitalMap.put(States.CONNECTICUT, "Hartford");
+        stateCapitalMap.put(States.DELAWARE, "Dover");
+        stateCapitalMap.put(States.FLORIDA, "Tallahassee");
+        stateCapitalMap.put(States.GEORGIA, "Atlanta");
+        stateCapitalMap.put(States.HAWAII, "Honolulu");
+        stateCapitalMap.put(States.IDAHO, "Boise");
+        stateCapitalMap.put(States.ILLINOIS, "Springfield");
+        stateCapitalMap.put(States.INDIANA, "Indianapolis");
+        stateCapitalMap.put(States.IOWA, "Des Moines");
+        stateCapitalMap.put(States.KANSAS, "Topeka");
+        stateCapitalMap.put(States.KENTUCKY, "Frankfort");
+        stateCapitalMap.put(States.LOUISIANA, "Baton Rouge");
+        stateCapitalMap.put(States.MAINE, "Augusta");
+        stateCapitalMap.put(States.MARYLAND, "Annapolis");
+        stateCapitalMap.put(States.MASSACHUSETTS, "Boston");
+        stateCapitalMap.put(States.MICHIGAN, "Lansing");
+        stateCapitalMap.put(States.MINNESOTA, "St. Paul");
+        stateCapitalMap.put(States.MISSISSIPPI, "Jackson");
+        stateCapitalMap.put(States.MISSOURI, "Jefferson City");
+        stateCapitalMap.put(States.MONTANA, "Helena");
+        stateCapitalMap.put(States.NEBRASKA, "Lincoln");
+        stateCapitalMap.put(States.NEVADA, "Carson City");
+        stateCapitalMap.put(States.NEW_HAMPSHIRE, "Concord");
+        stateCapitalMap.put(States.NEW_JERSEY, "Trenton");
+        stateCapitalMap.put(States.NEW_MEXICO, "Santa Fe");
+        stateCapitalMap.put(States.NEW_YORK, "Albany");
+        stateCapitalMap.put(States.NORTH_CAROLINA, "Raleigh");
+        stateCapitalMap.put(States.NORTH_DAKOTA, "Bismarck");
+        stateCapitalMap.put(States.OHIO, "Columbus");
+        stateCapitalMap.put(States.OKLAHOMA, "Oklahoma City");
+        stateCapitalMap.put(States.OREGON, "Salem");
+        stateCapitalMap.put(States.PENNSYLVANIA, "Harrisburg");
+        stateCapitalMap.put(States.RHODE_ISLAND, "Providence");
+        stateCapitalMap.put(States.SOUTH_CAROLINA, "Columbia");
+        stateCapitalMap.put(States.SOUTH_DAKOTA, "Pierre");
+        stateCapitalMap.put(States.TENNESSEE, "Nashville");
+        stateCapitalMap.put(States.TEXAS, "Austin");
+        stateCapitalMap.put(States.UTAH, "Salt Lake City");
+        stateCapitalMap.put(States.VERMONT, "Montpelier");
+        stateCapitalMap.put(States.VIRGINIA, "Richmond");
+        stateCapitalMap.put(States.WASHINGTON, "Olympia");
+        stateCapitalMap.put(States.WEST_VIRGINIA, "Charleston");
+        stateCapitalMap.put(States.WISCONSIN, "Madison");
+        stateCapitalMap.put(States.WYOMING, "Cheyenne");
 
         return stateCapitalMap;
+    }
+
+    /**
+     * @param stateName name of the state to find the image of
+     * @return the resId of the image of the given state
+     */
+    public static int getStateImageResId(String stateName) {
+        if (stateName == States.ALABAMA)
+            return R.drawable.state_alabama;
+        else if (stateName == States.ALASKA)
+            return R.drawable.state_alaska;
+        else if (stateName == States.ARIZONA)
+            return R.drawable.state_arizona;
+        else if (stateName == States.ARKANSAS)
+            return R.drawable.state_arkansas;
+        else if (stateName == States.CALIFORNIA)
+            return R.drawable.state_california;
+        else if (stateName == States.COLORADO)
+            return R.drawable.state_colorado;
+        else if (stateName == States.CONNECTICUT)
+            return R.drawable.state_connecticut;
+        else if (stateName == States.DELAWARE)
+            return R.drawable.state_delaware;
+        else if (stateName == States.FLORIDA)
+            return R.drawable.state_florida;
+        else if (stateName == States.GEORGIA)
+            return R.drawable.state_georgia;
+        else if (stateName == States.HAWAII)
+            return R.drawable.state_hawaii;
+        else if (stateName == States.IDAHO)
+            return R.drawable.state_idaho;
+        else if (stateName == States.ILLINOIS)
+            return R.drawable.state_illinois;
+        else if (stateName == States.INDIANA)
+            return R.drawable.state_indiana;
+        else if (stateName == States.IOWA)
+            return R.drawable.state_iowa;
+        else if (stateName == States.KANSAS)
+            return R.drawable.state_kansas;
+        else if (stateName == States.KENTUCKY)
+            return R.drawable.state_kentucky;
+        else if (stateName == States.LOUISIANA)
+            return R.drawable.state_louisiana;
+        else if (stateName == States.MAINE)
+            return R.drawable.state_maine;
+        else if (stateName == States.MARYLAND)
+            return R.drawable.state_maryland;
+        else if (stateName == States.MASSACHUSETTS)
+            return R.drawable.state_massachussets;
+        else if (stateName == States.MICHIGAN)
+            return R.drawable.state_michigan;
+        else if (stateName == States.MINNESOTA)
+            return R.drawable.state_minnesota;
+        else if (stateName == States.MISSISSIPPI)
+            return R.drawable.state_mississippi;
+        else if (stateName == States.MISSOURI)
+            return R.drawable.state_missouri;
+        else if (stateName == States.MONTANA)
+            return R.drawable.state_montana;
+        else if (stateName == States.NEBRASKA)
+            return R.drawable.state_nebraska;
+        else if (stateName == States.NEVADA)
+            return R.drawable.state_nevada;
+        else if (stateName == States.NEW_HAMPSHIRE)
+            return R.drawable.state_new_hampshire;
+        else if (stateName == States.NEW_JERSEY)
+            return R.drawable.state_new_jersey;
+        else if (stateName == States.NEW_MEXICO)
+            return R.drawable.state_new_mexico;
+        else if (stateName == States.NEW_YORK)
+            return R.drawable.state_new_york;
+        else if (stateName == States.NORTH_CAROLINA)
+            return R.drawable.state_north_carolina;
+        else if (stateName == States.NORTH_DAKOTA)
+            return R.drawable.state_north_dakota;
+        else if (stateName == States.OHIO)
+            return R.drawable.state_ohio;
+        else if (stateName == States.OKLAHOMA)
+            return R.drawable.state_oklahoma;
+        else if (stateName == States.OREGON)
+            return R.drawable.state_oregon;
+        else if (stateName == States.PENNSYLVANIA)
+            return R.drawable.state_pennsylvania;
+        else if (stateName == States.RHODE_ISLAND)
+            return R.drawable.state_rhode_island;
+        else if (stateName == States.SOUTH_CAROLINA)
+            return R.drawable.state_south_carolina;
+        else if (stateName == States.SOUTH_DAKOTA)
+            return R.drawable.state_south_dakota;
+        else if (stateName == States.TENNESSEE)
+            return R.drawable.state_tennessee;
+        else if (stateName == States.TEXAS)
+            return R.drawable.state_texas;
+        else if (stateName == States.UTAH)
+            return R.drawable.state_utah;
+        else if (stateName == States.VERMONT)
+            return R.drawable.state_vermont;
+        else if (stateName == States.VIRGINIA)
+            return R.drawable.state_virginia;
+        else if (stateName == States.WASHINGTON)
+            return R.drawable.state_washington;
+        else if (stateName == States.WEST_VIRGINIA)
+            return R.drawable.state_west_virginia;
+        else if (stateName == States.WISCONSIN)
+            return R.drawable.state_wisconsin;
+        else if (stateName == States.WYOMING)
+            return R.drawable.state_wyoming;
+        else
+            throw new IllegalArgumentException("Invalid state given");
     }
 
     /**
@@ -247,10 +359,12 @@ public class GameActivity extends Activity implements
 
     /**
      * @param stateName name of the state to show
-     * @post the state shown in the UI has been updated
+     * @post the state shown in the UI has been updated; this means
+     * text-wise and image-wise
      */
     public void updateShownState(String stateName) {
         mStateName.setText(stateName);
+        mStateImage.setImageResource(getStateImageResId(stateName));
     }
 
     /**

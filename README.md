@@ -34,6 +34,9 @@ Acknowledgments
 "Testing and Securing Android Studio Applications" by Belén Cruz Zapata
 and Antonio Hernández Niñirola helped me set up the unit tests.
 
+The images of the states were found this website:
+http://ericheikkinen.com/50-states-icon-pack/
+
 Author
 ------
 

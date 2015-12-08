@@ -44,7 +44,7 @@ public class GameActivityUnitTest
          * First, test with accepted values
          */
 
-        int score = GameActivity.numberOfStates;
+        int score = GameActivity.NUMBER_OF_STATES;
         mActivity.setScore(score);
         assertEquals(Integer.parseInt("" + mScore.getText()), score);
 
@@ -65,7 +65,7 @@ public class GameActivityUnitTest
         }
         assertTrue("-1 wasn't rejected", threwException);
 
-        score = GameActivity.numberOfStates + 1;
+        score = GameActivity.NUMBER_OF_STATES + 1;
         threwException = false;
         try {
             mActivity.setScore(score);
@@ -73,7 +73,7 @@ public class GameActivityUnitTest
         catch (IllegalArgumentException e) {
             threwException = true;
         }
-        assertTrue("GameActivity.numberOfStates + 1 wasn't rejected",
+        assertTrue("GameActivity.NUMBER_OF_STATES + 1 wasn't rejected",
                 threwException);
     }
 
@@ -93,12 +93,21 @@ public class GameActivityUnitTest
         HashMap<String, String> stateCapitalMap =
             GameActivity.getNewStateCapitalMap();
 
-        assertEquals(GameActivity.numberOfStates, stateCapitalMap.size());
+        assertEquals(GameActivity.NUMBER_OF_STATES, stateCapitalMap.size());
 
         // Check a few of the state-capital pairs
-        assertEquals("Sacramento", stateCapitalMap.get("California"));
-        assertEquals("Augusta", stateCapitalMap.get("Maine"));
-        assertEquals("Montpelier", stateCapitalMap.get("Vermont"));
+        assertEquals("Sacramento", stateCapitalMap.get(States.CALIFORNIA));
+        assertEquals("Augusta", stateCapitalMap.get(States.MAINE));
+        assertEquals("Montpelier", stateCapitalMap.get(States.VERMONT));
+    }
+
+    public void testGetStateImageResId() {
+        assertEquals(R.drawable.state_hawaii,
+                GameActivity.getStateImageResId(States.HAWAII));
+        assertEquals(R.drawable.state_mississippi,
+                GameActivity.getStateImageResId(States.MISSISSIPPI));
+        assertEquals(R.drawable.state_virginia,
+                GameActivity.getStateImageResId(States.VIRGINIA));
     }
 
     public void testUpdateStateCapitalPair() {
