@@ -37,7 +37,7 @@ public class States {
     public static final String NEW_MEXICO = "New Mexico";
     public static final String NEW_YORK = "New York";
     public static final String NORTH_CAROLINA = "North Carolina";
-    public static final String NORTH_DAKAOTA = "North Dakota";
+    public static final String NORTH_DAKOTA = "North Dakota";
     public static final String OHIO = "Ohio";
     public static final String OKLAHOMA = "Oklahoma";
     public static final String OREGON = "Oregon";

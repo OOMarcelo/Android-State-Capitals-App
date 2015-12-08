@@ -101,6 +101,15 @@ public class GameActivityUnitTest
         assertEquals("Montpelier", stateCapitalMap.get(States.VERMONT));
     }
 
+    public void testGetStateImageResId() {
+        assertEquals(R.drawable.state_hawaii,
+                GameActivity.getStateImageResId(States.HAWAII));
+        assertEquals(R.drawable.state_mississippi,
+                GameActivity.getStateImageResId(States.MISSISSIPPI));
+        assertEquals(R.drawable.state_virginia,
+                GameActivity.getStateImageResId(States.VIRGINIA));
+    }
+
     public void testUpdateStateCapitalPair() {
         // Test that a state-capital pair is removed from the map
         int formerSize = mActivity.getStateCapitalMapSize();

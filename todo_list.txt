@@ -1,5 +1,5 @@
 Next:
--get image of each state
+-address the game's restarting when phone orientation changes
 -high score (see final chapter of that book)
     --cite the book that helped me do this in readme
 
