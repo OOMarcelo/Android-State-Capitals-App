@@ -1,11 +1,11 @@
 Next:
--address the game's restarting when phone orientation changes
 -high score (see final chapter of that book)
     --cite the book that helped me do this in readme
 
 Considerable:
--putting a tiny time break in between correct answer and presentation
-of next state
--making it more obvious that the correct answer has been given
-    --could play sound effect
-    --could figure out how to make the phone vibrate
+-making it more obvious that the correct answer has been given; could:
+    --play sound effect
+    --figure out how to make the phone vibrate
+    --put tiny time break
+    --have some words pop up
+    --could have the text of the new state translate into the screen somehow
