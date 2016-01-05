@@ -1,0 +1,13 @@
+Next:
+
+On hold:
+-high score (see final chapter of that book)
+    --cite the book that helped me do this in readme
+
+Considerable:
+-making it more obvious that the correct answer has been given; could:
+    --play sound effect
+    --figure out how to make the phone vibrate
+    --put tiny time break
+    --have some words pop up
+    --could have the text of the new state translate into the screen somehow
