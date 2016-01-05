@@ -8,6 +8,12 @@ correctly, consecutively give the capital of each state of the United States.
 I worked on it in the fall of 2015, during my first year in college. I
 used Android Studio.
 
+Here is a link to a demonstrative YouTube video:
+https://www.youtube.com/watch?v=ChLRw-T6MHw
+
+Here is a link to the app's Google Play webpage:
+https://play.google.com/store/apps/details?id=com.aaronistheman.statecapitals&referrer=utm_source%3Dappbrain%26utm_medium%3Dappbrain_web%26utm_campaign%3Dappbrain_web
+
 Features
 --------
 
