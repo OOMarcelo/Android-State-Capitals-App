@@ -3,9 +3,9 @@
 About
 -----
 
-In this Android app-in-progress programmed in Java, the user attempts to
+In this Android app programmed in Java, the user attempts to
 correctly, consecutively give the capital of each state of the United States.
-I worked on it in the fall of 2015, during my first year in college. I
+I worked on it in the last months of 2015, during my first year in college. I
 used Android Studio.
 
 Here is a link to a demonstrative YouTube video:
@@ -17,12 +17,20 @@ https://play.google.com/store/apps/details?id=com.aaronistheman.statecapitals&re
 Features
 --------
 
-To be listed eventually.
+For each state, the user is shown the correct answer and three randomly
+selected, wrong answers. Picking a wrong answer restarts the game.
+Provided the result of the next presidential election does not cause any
+secessions, the user must consecutively give fifty correct answers to win.
+
+I have been trying to integrate Google Play leaderboards and achievements,
+but I have not been successful. I may try again in the future.
 
 Releases
 --------
 
-None yet.
+Latest release: v0.1
+
+Please see the Releases section on GitHub for the latest information.
 
 How to Run App
 --------------
@@ -40,7 +48,10 @@ Acknowledgments
 "Testing and Securing Android Studio Applications" by Belén Cruz Zapata
 and Antonio Hernández Niñirola helped me set up the unit tests.
 
-The images of the states were found this website:
+"Learning Java by Building Android Games" by John Horton
+got me started on Android apps.
+
+The images of the states were from this website:
 http://ericheikkinen.com/50-states-icon-pack/
 
 Author
